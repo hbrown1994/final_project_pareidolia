@@ -4,6 +4,7 @@
   text-decoration: none;
   color: white;
   font-family: sans-serif;
+  text-transform: uppercase;
 }
 
 .title {
@@ -11,7 +12,6 @@
   margin-right: auto;
   padding-top: 25vh;
   text-align: center;
-  text-transform: uppercase;
 }
 
 .author {
