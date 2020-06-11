@@ -2,7 +2,7 @@
 
 Final Project for Intermediate Internet Art
 
-~Only works in FireFox & Chrome~
+---Only works in FireFox & Chrome---
 
 This audiovisual composition takes the user's current Country Code, city, zipcode, latitude, longitude, internet provider, and IP address. This data is converted to their numerical utf-8 character codes. Next, these numerical character codes are used to create 9 wavetable oscillators, these oscillator's frequencies over time, the duration of each synth instance, and the duration of the musical composition as a whole. This data is also used to dynamically generate the 3D animation seen on the screen.
 
