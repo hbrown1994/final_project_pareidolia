@@ -1,4 +1,6 @@
 //Utility FUNCTIONS____________________________________________________________________
+
+//make an array of float32 values
 function makeFloatArray(array) {
   let real = new Float32Array(array)
   let imag_array=[]
@@ -7,6 +9,7 @@ function makeFloatArray(array) {
   return [real, imag]
 }
 
+//randomly shuffle an array
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
   while (0 !== currentIndex) {
@@ -21,15 +24,15 @@ function shuffle(array) {
 
 //make array of random numbers that equal a given sum
 function randomNumSum(numVals, scale) {
-let atks =[], atksDiv =[], sum = 0
+let nums =[], numsDiv =[], sum = 0
 for (var i = 0; i < numVals; i++) {
   let atk = Math.random()
-  atks.push(atk)
+  nums.push(atk)
   sum = sum + atk
 }
-for (var i = 0; i < atks.length; i++) {
-  let norm = (atks[i]/sum)*scale
-  atksDiv.push(norm)
+for (var i = 0; i < nums.length; i++) {
+  let norm = (nums[i]/sum)*scale
+  numsDiv.push(norm)
 }
-return atksDiv
+return numsDiv
 }

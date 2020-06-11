@@ -1,9 +1,6 @@
 function main(json) {
-
-  /*_____PARSE_DATA_______*/
   let chars = [], c0 = ' '.charCodeAt(0),  cN = '~'.charCodeAt(0);
   for (; c0 <= cN; ++c0) {chars.push(String.fromCharCode(c0))}
-
   let nums = []
   let numsNorm = []
   let numsNormBipolar = []
@@ -120,32 +117,26 @@ function main(json) {
     arraySums.push(total)
   }
 
-  //sum of all items in arrays -> total time of piece
+  //set totaltime for audio manipulations
   let totalTime = 0
   for (var i = 0; i < 7; i++) totalTime = totalTime + arraySums[i]
   totalTime = totalTime / 2
-  console.log(totalTime)
-  audioSetup()
-  runIt()
 
+  runAudio()
 
-
-  /*_Section 1_________________________________________________________________*/
-
-  function adsrExp (param, initVal, peak, val, t, a, d, s, r) {
+  function adsrExp (param, initVal, peak, val, t, a, d, s) {
     param.setValueAtTime(initVal, t)
     param.exponentialRampToValueAtTime(peak, t+a)
     param.exponentialRampToValueAtTime(val, time+a+d)
     param.exponentialRampToValueAtTime(val, time+a+d+s)
-    param.linearRampToValueAtTime(initVal, time+a+d+s+r)
-    //linear ramp sounds better on release
+    //noFadeout
   }
 
-  function audioSetup() {
+  function runAudio() {
     for (var j = 0; j < waveForms.length; j++) {
       let scale = 5, add=40; //scale freqs, (add determines lowest pitch)
 
-      //random scalr of 5 or 6
+      //random octave scaler of 5 or 6
       scale = Math.round(Math.random())+5;
 
       oscs[j].connect(pans[j])
@@ -168,21 +159,13 @@ function main(json) {
       if (j%3 === 1) panPos = shuffle(panPos)
       pans[j].setPosition(panPos[j%3],0,0)
 
-      //set adsr
-      let adsrArr = randomNumSum(4, totalTime)
-      console.log(adsrArr[0]/4,adsrArr[1]*4,adsrArr[2],adsrArr[3]);
-      adsrExp(lvls[j].gain,0.00001,0.2,0.2,time,adsrArr[0]/2,adsrArr[1]*2,adsrArr[2],adsrArr[3])
+      //set ads (no)
+      let adsrArr = randomNumSum(3, totalTime)
+      adsrExp(lvls[j].gain,0.000001,0.1,0.05,time,adsrArr[0]/4,adsrArr[1],adsrArr[2]*4)
+
+      //start oscs
+      oscs[j].start(ctx.currentTime ) // start now
+      //no stop! funs forever
     }
   }
-
-    //run it
-    function runIt() {
-      for (var j = 0; j < waveForms.length; j++) {
-        oscs[j].start(ctx.currentTime ) // start now
-        oscs[j].stop(ctx.currentTime + totalTime + 1 )
-      }
-    }
-  }
-
-
-// Math.floor((ctx.currentTime+totalTime) % totalTime)
+}

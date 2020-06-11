@@ -9,10 +9,6 @@ function shader(json) {
   let noise_layer = 200, noise_layer_d=0.01
   let colorP = 5, colorP_d = 0.01
 
-  const ctx = new (window.AudioContext || window.webkitAudioContext)()
-  const time = ctx.currentTimes
-  let totalTime = 30
-
 //   if (json === undefined){
 //     info = [ "US", "Illinois", "Chicago", "60290", "41.85003", "-87.65005", "-05:00", "73.44.30.245", "Comcast Cable Communications, LLC"]
 // } else{
@@ -78,16 +74,16 @@ function shader(json) {
   animate()
 
   function init() {
-    const container = document.getElementById( 'container' )
-    camera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 )
+    const container = document.getElementById('container')
+    camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
     camera.zoom = 1000.1
     scene = new THREE.Scene()
 
-    const geometry = new THREE.PlaneBufferGeometry( 2, 2 )
+    const geometry = new THREE.PlaneBufferGeometry(2, 2)
     const material = new THREE.ShaderMaterial({
       uniforms: uniforms,
-      vertexShader: document.getElementById( 'vertexShader' ).textContent,
-      fragmentShader: document.getElementById( 'fragmentShader' ).textContent
+      vertexShader: document.getElementById('vertexShader').textContent,
+      fragmentShader: document.getElementById('fragmentShader').textContent
     })
 
     const mesh = new THREE.Mesh(geometry, material)
@@ -103,39 +99,29 @@ function shader(json) {
 
   function animate(timestamp) {
     requestAnimationFrame(animate)
-    // let simplex = noise.simplex2(timestamp/10000, timestamp/100000) * (nums[15] + 10000)
-    // let simplex_mod = noise.simplex2(timestamp/510000, Date.now() /390000)
 
     let zoom =  1000 / (timestamp/100)
     uniforms[ "zoom" ].value = zoom * 7
 
-    // detail = 0.5
     detail = detail - detail_d
     if(detail<1){detail_d=0}else{detail_d=1}
     uniforms[ "data32" ].value = detail
 
-    // sat = 2
     sat = sat - sat_d
     if(sat<=1){sat_d=0.0} else{sat_d=0.5}
     uniforms[ "data33" ].value = sat
 
-    //noise layer
-    // noise_layer=1.0
     noise_layer = noise_layer - noise_layer_d
     if(noise_layer<1){noise_layer_d=0} else{noise_layer_d=0.025}
     uniforms[ "data43" ].value = noise_layer
 
-    //color palette
     colorP = colorP + colorP_d
     if(colorP>20){colorP_d=0.0} else{colorP_d=0.01}
     uniforms[ "data41" ].value = colorP
 
-    // density = 7
     density = density + density_d
     if(density<7.0) {density_d=0} else{density_d=0.001}
     uniforms[ "data38" ].value = density
-
-    // console.log(Math.floor((ctx.currentTime+totalTime) % totalTime))
 
     uniforms[ "time" ].value = timestamp / 1000
     renderer.render( scene, camera )

@@ -2,5 +2,5 @@ const url = "https://geo.ipify.org/api/v1?apiKey=at_3ItWfXcFPjP5i796rNgDqRwZoqNZ
 const req = { method: 'GET' }
 fetch(url, req)
   .then(res => res.json())
-  .then(main)
-  .then(shader)
+  .then(main) //audio
+  .then(shader) //visual
