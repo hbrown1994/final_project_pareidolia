@@ -9,6 +9,6 @@ This audiovisual composition takes the user's current Country Code, city, zipcod
 This work begins as a screen of colored noise, the sound in silence. Over time, this image begins to reveal ever changing, oscillating visual forms while the audio fades into a collection of raw, clearly discernible digital waveforms. I equate this process to how internet companies filter large collections of seemingly meaningless user data (noise/nothingness) into precise tracking devices to exploit human beings. A form of capitalistic Pareidolia.
  <br/>
 
-Webpage link: https://hbrown1994.github.io/webmusic/
+Webpage link: https://hbrown1994.github.io/final_project_pareidolia/
 
 -HB
