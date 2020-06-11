@@ -2,6 +2,8 @@
   box-sizing: border-box;
   background: black;
   text-decoration: none;
+  color: white;
+  font-family: sans-serif;
 }
 
 .title {
@@ -10,8 +12,6 @@
   padding-top: 25vh;
   text-align: center;
   text-transform: uppercase;
-  color: white;
-  font-family: sans-serif;
 }
 
 .author {
@@ -19,7 +19,6 @@
   margin-right: auto;
   text-align: center;
   text-transform: uppercase;
-  color: white;
   font-family: sans-serif;
   padding-top: 10px;
 }
@@ -27,7 +26,6 @@
 .start {
   margin-left: auto;
   margin-right: auto;
-  color: white;
   text-align: center;
   justify-content: center;
   font-size: 36px;
