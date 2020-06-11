@@ -91,7 +91,7 @@ function audio(nums, numsNorm, numsNormBipolar, numsSplit, numsSplitNorm, numsSp
       adsrExp(lvls[j].gain,0.000001,0.1,0.05,time,adsrArr[0]/4,adsrArr[1],adsrArr[2]*4)
 
       //start oscs
-      oscs[j].start(ctx.currentTime ) // start now
+      oscs[j].start(ctx.currentTime) // start now
       //no stop! funs forever
     }
   }
