@@ -36,3 +36,12 @@ for (var i = 0; i < nums.length; i++) {
 }
 return numsDiv
 }
+
+//adsr envelops
+function adsrExp (param, initVal, peak, val, t, a, d, s) {
+  param.setValueAtTime(initVal, t)
+  param.exponentialRampToValueAtTime(peak, t+a)
+  param.exponentialRampToValueAtTime(val, t+a+d)
+  param.exponentialRampToValueAtTime(val, t+a+d+s)
+  //noFadeout
+}

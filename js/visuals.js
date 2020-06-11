@@ -1,47 +1,12 @@
-function shader(json) {
+function visuals(nums, numsNorm, numsSplit, numsSplitNorm) {
   let scene, renderer, camera, uniforms
   let chars = [], c0 = ' '.charCodeAt(0),  cN = '~'.charCodeAt(0)
   for (; c0 <= cN; ++c0) {chars.push(String.fromCharCode(c0))}
-  let nums = [], numsNorm = [], numsSplit = [], numsSplitNorm = [], info = []
   let density = 0, density_d = 0.001
   let sat = 1000, sat_d = 0.1
   let detail = 10000, detail_d=0.1
   let noise_layer = 200, noise_layer_d=0.01
   let colorP = 5, colorP_d = 0.01
-
-//   if (json === undefined){
-//     info = [ "US", "Illinois", "Chicago", "60290", "41.85003", "-87.65005", "-05:00", "73.44.30.245", "Comcast Cable Communications, LLC"]
-// } else{
-//   info.push(json['location']['country'])
-//   info.push(json['location']['region'])
-//   info.push(json['location']['city'])
-//   info.push(json['location']['postalCode'])
-//   info.push(JSON.stringify(json['location']['lat']))
-//   info.push(JSON.stringify(json['location']['lng']))
-//   info.push(json['location']['timezone'])
-//   info.push(json['ip'])
-//   info.push(json['isp'])
-// }
-
-  info = [ "US", "Illinois", "Chicago", "60290", "41.85003", "-87.65005", "-05:00", "73.44.30.245", "Comcast Cable Communications, LLC"]
-
-  for (var t = 0; t < info.length; t++) numsSplit.push([])
-  for (var n = 0; n < info.length; n++) numsSplitNorm.push([])
-
-  for (var j = 0; j < info.length; j++) {
-    for (var a = 0; a < info[j].length; a++) {
-      for (var p = 0; p < chars.length; p++) {
-       if (info[j][a] === chars[p]) {
-         numsSplit[j].push(p) //split Nums
-         numsSplitNorm[j].push(p/chars.length) //split nums 0.0-1.0
-        }
-      }
-    }
-  }
-
-  //concat aboves arrays together into one array
-  for (var y = 0; y < numsSplit.length; y++) nums = nums.concat(numsSplit[y])
-  for (var m = 0; m < numsSplit.length; m++) {numsNorm = numsNorm.concat(numsSplitNorm[m])}
 
   uniforms = {
     "time": {value: 1.0 }, "flux": {value: 1.0}, "data0": {value: nums[5]}, "zoom": {value: numsNorm[10] + 1000},
@@ -99,9 +64,8 @@ function shader(json) {
 
   function animate(timestamp) {
     requestAnimationFrame(animate)
-
-    let zoom =  1000 / (timestamp/100)
-    uniforms[ "zoom" ].value = zoom * 7
+    
+    uniforms[ "zoom" ].value = (1000 / (timestamp/100)) * 7
 
     detail = detail - detail_d
     if(detail<1){detail_d=0}else{detail_d=1}
