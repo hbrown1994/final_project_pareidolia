@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="author" content="Hunter Brown">
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <title>(Pareidolia)</title>
+
+  </head>
+  <body>
+    <div id="container"></div>
+    <section id="splash"></section>
+    <script src="js/objects/simplex.js"></script>
+    <script src="js/libraries/three.min.js"></script>
+    <script src="js/libraries/stats.min.js"></script>
+    <script src="js/libraries/perlin.js"></script>
+    <script src="js/libraries/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script id="vertexShader" type="x-shader/x-vertex">
+			varying vec2 vUv;
+			void main()	{
+				vUv = uv;
+				gl_Position = vec4( position, 1.0 );
+			}
+		</script>
+		<script id="fragmentShader" type="x-shader/x-fragment">
+			varying vec2 vUv;
+      uniform float flux, zoom, time;
+      uniform float data0, data1, data2, data3, data4, data5, data6, data7,
+      data8, data9, data10, data11, data12, data13, data14, data15, data16, data17,
+      data18, data19, data20, data21, data22, data23, data24, data25, data26,
+      data27, data28, data29, data30, data31, data32, data33, data34, data35,
+      data36, data37, data38, data39, data40, data41, data42, data43, data44,
+      data45, data46, data47, data48, data49, data50, data51, data52, data53,
+      data54;
+
+			void main()	{
+				vec2 p = - 1.0 + 2.0 * vUv;
+				float a = time * flux;
+				float d, e, f, g = zoom / data0 ,h ,i ,r ,q;
+
+				e = data1 * ( p.x * data2 + data3);
+				f = data4 * ( p.y * data5 + data6);
+				i = data7 + sin( e * g + a / data8 ) * data9;
+				d = data10 + cos( f * g / data11 ) * data12 + cos( e * g ) * data13;
+				r = sqrt( pow( abs( i - e ), data14) + pow( abs( d - f ), data15 ) );
+				q = f / r;
+				e = ( r * cos( q ) ) - a / data17;
+				f = ( r * sin( q ) ) - a / data18;
+				d = sin( e * g ) * data19 + sin( e * g ) * data20 + r;
+				h = ( ( f + d ) + a / data21 ) * g;
+				i = cos( h + r * p.x / data22 ) * ( e + e + a ) + cos( q * g * data23 ) * ( r + h / data24 );
+				h = sin( f * g ) * data25 - sin( e * g ) * data26 * p.x;
+				h = ( h + ( f - e ) * q + sin( r - ( a + h ) / data27 ) * data28 + i / data29 ) * g;
+				i += cos( h * data30 * sin( a / data31 - q ) ) * data32 * sin( q - ( r * data33 + a / data34 ) * g ) + tan( r * g + h ) * data35 * cos( r * g + h );
+				i = mod( i / data36, data37 ) / data36;
+				if ( i < 0.0 ) i += data39;
+				if ( i >= 2.0 ) i = data40 - i;
+				d = r / data41;
+				d += sin( d * d * data42 ) * data43;
+				f = ( sin( a * g ) + data44 ) / data44;
+				gl_FragColor = vec4( vec3( f * i / data46, i / data47 + d / data48, i ) * d * p.x + vec3( i / data49 + d / data50, i / data51 + d / data52, i ) * d * ( data53 - p.x ), data54 );
+			}
+		</script>
+		<script src="js/webGLShader.js"></script>
+    <script src="js/getData.js"></script>
+  </body>
+</html>

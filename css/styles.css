@@ -1,0 +1,140 @@
+/*imports 3rd party font */
+* {
+  box-sizing: border-box;
+  background: black;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  font-family: monospace; /*2nd font is backup*/
+  background: black;
+  transition: all 3s;
+}
+
+h1{
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0px;
+}
+
+
+#container {
+  animation: fadein 60s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/*_______Splash______________________________________________________________*/
+canvas {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+
+}
+#splash{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#splash > div {
+  display: flex;
+  flex-direction:  column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#title {
+  font-size: 20px;
+  text-align: center;
+  padding: 38px;
+  color: white;
+}
+
+img{
+  text-align: center;
+  cursor: pointer;
+}
+
+/*_______Chatroom____________________________________________________________*/
+
+header{
+  /* background: red; */
+  height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main{
+  /* background: green; */
+  height: 70vh;
+}
+
+.row {
+  background-color: rgba(0, 0, 0, 0.5);
+  max-width: 700px;
+  margin: 5px auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  color: white;
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Image inside .row class */
+.user-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Makes photo a circle */
+}
+
+footer{
+  background: black;
+  height: 15vh;
+}
+
+.inputs{
+  display: flex;
+  justify-content: space-between;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.inputs > input {
+  background: none;
+  border: none;
+  border-bottom: 2px solid #fff;
+  color: #fff;
+  font-weight: bold;
+  padding-top: 14px;
+}
+
+#username {
+  width: 100px;
+}
+
+#message {
+  width: 400px;
+}
+
+#submit {
+  background: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-family: "Major Mono Display";
+  font-weight: bold;
+  cursor: pointer;
+}

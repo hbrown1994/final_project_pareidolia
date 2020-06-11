@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  background: black;
+  text-decoration: none;
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  font-family: sans-serif;
+}
+
+.start {
+  color: white;
+  text-align: center;
+  justify-content: center;
+  font-size: 36px;
+}
+
+.start:hover{
+  transform: scale(2.0);
+}
