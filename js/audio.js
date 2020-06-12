@@ -6,9 +6,9 @@ function audio(nums, numsNorm, numsNormBipolar, numsSplit, numsSplitNorm, numsSp
   let count, oscs = [], lvls = [], pans = [], panPos = [-1, 0, 1], arraySums = []
   panPos = shuffle(panPos)
   for (i = 0; i < numsSplit.length; i++) {
-      oscs.push(new OscillatorNode(ctx))
-      lvls.push(new GainNode(ctx, {gain:0.25}))
-      pans.push(new PannerNode(ctx, {positionX: 0}))
+      oscs.push(ctx.createOscillator())
+      lvls.push(ctx.createGain())
+      pans.push(ctx.createPanner())
   }
 
   /*___ Data -> Sound _______________________________________________________*/
