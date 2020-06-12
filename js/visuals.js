@@ -6,7 +6,7 @@ function visuals(nums, numsNorm, numsSplit, numsSplitNorm) {
   let sat = 1000, sat_d = 0.1
   let detail = 10000, detail_d=0.1
   let noise_layer = 200, noise_layer_d=0.01
-  let colorP = 5, colorP_d = 0.01
+  let colorP = 1, colorP_d = 0.01
 
   uniforms = {
     "time": {value: 1.0 }, "flux": {value: 1.0}, "data0": {value: nums[5]}, "zoom": {value: numsNorm[10] + 1000},
@@ -25,7 +25,7 @@ function visuals(nums, numsNorm, numsSplit, numsSplitNorm) {
     "data33": {value: 0.3}, "data34": {value: 1.0}, "data35": {value: 0.4},
     "data36": {value: 6.6}, "data37": {value: 200.0}, "data38": {value: 7.0},
     "data39": {value: nums[14]}, "data40": {value: numsNorm[15]},
-    "data41": {value: 5},
+    "data41": {value: 50},
     "data42": {value: 800.0}, "data43": {value: 200},
     "data44": {value: nums[17]}, "data45": {value: nums[16]},
     "data46": {value: numsNorm[13]}, "data47": {value: nums[24]},
@@ -64,7 +64,7 @@ function visuals(nums, numsNorm, numsSplit, numsSplitNorm) {
 
   function animate(timestamp) {
     requestAnimationFrame(animate)
-    
+
     uniforms[ "zoom" ].value = (1000 / (timestamp/100)) * 7
 
     detail = detail - detail_d
@@ -79,8 +79,7 @@ function visuals(nums, numsNorm, numsSplit, numsSplitNorm) {
     if(noise_layer<1){noise_layer_d=0} else{noise_layer_d=0.025}
     uniforms[ "data43" ].value = noise_layer
 
-    colorP = colorP + colorP_d
-    if(colorP>20){colorP_d=0.0} else{colorP_d=0.01}
+    if(colorP>(numsNorm[16] * 300)){colorP_d=0.0} else{colorP_d=0.01}
     uniforms[ "data41" ].value = colorP
 
     density = density + density_d
