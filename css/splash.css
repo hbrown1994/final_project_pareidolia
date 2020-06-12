@@ -35,3 +35,14 @@
 .start:hover{
   transform: scale(2.0);
 }
+
+.subtext{
+margin-left: auto;
+margin-right: auto;
+margin-top: 60px;
+text-align: center;
+justify-content: center;
+font-size: 18px;
+text-transform: lowercase;
+font-style: italic;
+}
