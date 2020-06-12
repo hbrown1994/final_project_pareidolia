@@ -5,6 +5,13 @@
 
 #container {
   animation: fadein 60s;
+  width:100vh;
+  height:100vh;
+  margin: auto 0;
+  padding: 0;
+  position: fixed;
+  top: 0px;
+  left: 0px;
 }
 
 @keyframes fadein {
